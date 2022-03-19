@@ -1,5 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+  div(class = 'text-center center-div' id = 'login')
+    div(class = 'container w-25 border py-5')
+      div(class='title pb-5')
+        h2(class='font-weight-bold') Login system
+            h3 Log in for the existing user
+      form(action='#' class='pt-3')
+        div(class = 'form-group')
+          input( type = 'email', class = 'form-control', placeholder= 'email', name='email')
+          small(class = 'form-text text-left text-black') Register email address
+          input(type='password', class='form-control', name='password', placeholder='password')
+          button(type='button', class='btn btn-success rounded-pill') submit

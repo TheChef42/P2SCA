@@ -1,6 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.center-div{
+  padding-top: 10%;
+}
+
+.btn.btn-success{
+  padding: .4em 2em;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  background-image: url("/assets/back.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+form{
+  padding: 0 3em;
+}
+
+#login .title>h3{
+  font-size: .8em;
 }
 
 a {
