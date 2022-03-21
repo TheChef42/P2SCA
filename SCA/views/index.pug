@@ -7,7 +7,7 @@ block content
       div(class='title pb-5')
         h2(class='font-weight-bold') Login system
             h3 Log in for the existing user
-      form(action='#' class='pt-3')
+      form(action='/route/login' method='post' class='pt-3')
         div(class = 'form-group')
           input( type = 'email', class = 'form-control', placeholder= 'email', name='email')
           small(class = 'form-text text-left text-black') Register email address
