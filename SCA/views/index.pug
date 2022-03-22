@@ -7,6 +7,9 @@ block content
       div(class='title pb-5')
         h2(class='font-weight-bold') Login system
             h3 Log in for the existing user
+            if(locals.logout)
+              div(class='alert alert-success text-center')
+                =logout
       form(action='/login' method='POST' class='pt-3')
         div(class = 'form-group')
           input( type = 'email', class = 'form-control', placeholder= 'email', name='email')
