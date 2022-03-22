@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyparser = require('body-parser');
 const session = require('express-session');
-const {v4:uuidv4} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -28,8 +28,8 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
 
 app.use(session({
-  secret: uuidv4,
-  recive: false,
+  secret: uuidv4(),
+  resave: false,
   saveUninitialized: true,
 }));
 

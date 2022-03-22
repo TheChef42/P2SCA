@@ -7,9 +7,13 @@ block content
       div(class='title pb-5')
         h2(class='font-weight-bold') Login system
             h3 Log in for the existing user
-      form(action='/route/login' method='post' class='pt-3')
+            if(locals.logout)
+              div(class='alert alert-success text-center')
+                =logout
+      form(action='/login' method='POST' class='pt-3')
         div(class = 'form-group')
           input( type = 'email', class = 'form-control', placeholder= 'email', name='email')
           small(class = 'form-text text-left text-black') Register email address
+        div(class = 'form-group')
           input(type='password', class='form-control', name='password', placeholder='password')
-          button(type='button', class='btn btn-success rounded-pill') submit
+        button(type='submit', class='btn btn-success rounded-pill') Submit
