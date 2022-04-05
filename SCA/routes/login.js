@@ -1,4 +1,5 @@
 var express = require('express');
+const User = require("../models/user");
 var router = express.Router();
 
 const credential = {
@@ -6,14 +7,20 @@ const credential = {
     password: 'admin123'
 }
 
-router.post('/',(req,res)=>{
-    if(req.body.email == credential.email && req.body.password == credential.password){
-        req.session.user = req.body.email;
-        //res.end('Login successful');
-        res.redirect('/dashboard');
-    }else{
-        res.end('Invalid Username');
+router.post('/',async (req,res)=>{
+    try {
+        const users = await User.findOne({username:req.body.email})
+        if(req.body.email == users.username && req.body.password == users.password){
+            req.session.user = req.body.email;
+            //res.end('Login successful');
+            res.redirect('/dashboard');
+        }else{
+            res.end('Invalid Username');
+        }
+    }catch (err){
+        res.send('Error')
     }
+
 });
 
 module.exports = router;

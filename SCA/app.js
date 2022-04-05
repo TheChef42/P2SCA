@@ -6,6 +6,8 @@ var logger = require('morgan');
 const bodyparser = require('body-parser');
 const session = require('express-session');
 const { v4: uuidv4 } = require('uuid');
+const mongoose = require('mongoose');
+const url = 'mongodb+srv://TheChef42:Z7qapznm@cluster0.beh3d.mongodb.net/CRUD?retryWrites=true&w=majority'
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -14,6 +16,12 @@ const bodyParser = require("body-parser");
 
 var app = express();
 
+mongoose.connect(url, {useNewUrlParser:true})
+const con = mongoose.connection
+
+con.on('open',function (){
+  console.log('connected....')
+})
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
