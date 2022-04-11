@@ -1,0 +1,12 @@
+block content
+    h1=title
+
+    form(method='POST' action='')
+        div.form-group
+            label(for='username') Email:
+            input#username.form-control(type='email' placeholder='place@holder.com' name='username' required='true' value=(undefined===user ? '' : user.username) )
+            if (userexists == 'true')
+                p Email is already in use
+            label(for='password') Password:
+            input#password.form-control(type='password' placeholder='Password' name='password' required='true' value=(undefined===user ? '' : user.password))
+        button.btn.btn-primary(type='submit') Submit

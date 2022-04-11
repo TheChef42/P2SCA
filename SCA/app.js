@@ -7,16 +7,21 @@ const bodyparser = require('body-parser');
 const session = require('express-session');
 const { v4: uuidv4 } = require('uuid');
 const mongoose = require('mongoose');
-const url = 'mongodb+srv://TheChef42:Z7qapznm@cluster0.beh3d.mongodb.net/CRUD?retryWrites=true&w=majority'
+
+const dotenv = require("dotenv");
+dotenv.config()
+
+const url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.beh3d.mongodb.net/CRUD?retryWrites=true&w=majority`
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/login')
+var loginRouter = require('./routes/login');
+var createRouter = require('./routes/create');
 const bodyParser = require("body-parser");
 
 var app = express();
 
-mongoose.connect(url, {useNewUrlParser:true})
+mongoose.connect(url, { useNewUrlParser: true , useUnifiedTopology: true})
 const con = mongoose.connection
 
 con.on('open',function (){
@@ -44,6 +49,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login',loginRouter);
+app.use('/create',createRouter);
 
 
 // catch 404 and forward to error handler

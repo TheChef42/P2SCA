@@ -12,8 +12,9 @@ block content
                 =logout
       form(action='/login' method='POST' class='pt-3')
         div(class = 'form-group')
-          input( type = 'email', class = 'form-control', placeholder= 'email', name='email')
+          input(type='email', class='form-control', placeholder= 'email', name='email')
           small(class = 'form-text text-left text-black') Register email address
         div(class = 'form-group')
           input(type='password', class='form-control', name='password', placeholder='password')
         button(type='submit', class='btn btn-success rounded-pill') Submit
+      a(href='/create') Create user

@@ -2,10 +2,6 @@ var express = require('express');
 const User = require("../models/user");
 var router = express.Router();
 
-const credential = {
-    email: 'admin@gmail.com',
-    password: 'admin123'
-}
 
 router.post('/',async (req,res)=>{
     try {
