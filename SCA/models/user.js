@@ -14,6 +14,14 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    address: {
+        type: String,
+        required: false
+    },
+    region: {
+        type: String,
+        required: false
     }
 })
 module.exports = mongoose.model('User',userSchema)

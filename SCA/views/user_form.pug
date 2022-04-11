@@ -5,8 +5,17 @@ block content
         div.form-group
             label(for='username') Email:
             input#username.form-control(type='email' placeholder='place@holder.com' name='username' required='true' value=(undefined===user ? '' : user.username) )
-            if (userexists == 'true')
+            if (userexists === 'true')
                 p Email is already in use
+
             label(for='password') Password:
             input#password.form-control(type='password' placeholder='Password' name='password' required='true' value=(undefined===user ? '' : user.password))
+
+            label(for='address') Address:
+            input#address.form-control(type='text' placeholder='Placeholder 42' name='address' required='true' value=(undefined === user ? '' : user.address))
+
+            label(for='region') Region:
+            input#region.form-control(type='text' placeholder='Placeholder' name='region' required='true' value=(undefined === user ? '' : user.region))
+
         button.btn.btn-primary(type='submit') Submit
+

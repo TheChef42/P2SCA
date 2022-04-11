@@ -1,5 +1,6 @@
 var express = require('express');
 const User = require("../models/user");
+const PickupOrder = require("../models/pickupOrder");
 var router = express.Router();
 
 /* GET home page. */
@@ -49,4 +50,25 @@ router.post('/delete',async(req,res)=>{
   }
 })
 
+router.post ('/pickUpOrder', async (req, res) => {
+  try{
+    const users = await User.findOne({username:req.session.user})
+    const pickupOrder = new PickupOrder ({
+      date: req.body.date,
+      address: users.address,
+      region: users.region
+    })
+    const a1 = await pickupOrder.save()
+    res.render('dashboard', {title: 'Pickup order', logout: 'the pick up order has been made!'})
+
+  } catch(err) {
+    res.send('Error')
+  }
+
+})
+
+
+router.get('/pickup',(req,res)=>{
+  res.render('pickup')
+})
 module.exports = router;

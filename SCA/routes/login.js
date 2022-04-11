@@ -11,10 +11,10 @@ router.post('/',async (req,res)=>{
             //res.end('Login successful');
             res.redirect('/dashboard');
         }else{
-            res.end('Invalid Username');
+            res.render('index',{logout:'invalid password'})
         }
     }catch (err){
-        res.send('Error')
+        res.render('index',{logout:'invalid username'})
     }
 
 });
