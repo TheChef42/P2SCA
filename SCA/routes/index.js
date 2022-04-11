@@ -66,9 +66,32 @@ router.post ('/pickUpOrder', async (req, res) => {
   }
 
 })
-
-
 router.get('/pickup',(req,res)=>{
   res.render('pickup')
 })
+
+router.get('/update',async(req,res)=>{
+  const users = await User.findOne({username:req.session.user})
+  res.render('user_form',{user: users})
+})
+
+router.post('/update', async(req,res) =>{
+  const users = new User ({
+    username: req.body.username,
+    password: req.body.password,
+    driver: req.body.driver,
+    address: req.body.address,
+    region: req.body.region
+  })
+  const user = await User.findOne({username:req.body.username})
+  console.log(user._id)
+  try{
+    await User.findByIdAndUpdate(user._id,users,{})
+    res.redirect('/dashboard')
+  }catch{
+    res.send('Error')
+  }
+})
+
+
 module.exports = router;
