@@ -1,0 +1,12 @@
+extends layout
+
+block content
+
+    div(class='text-center center-div mt-5' id='Rate us')
+        div(class='container w-25 border py-5 mt-5')
+            form(action='/rating' method='POST' class='pt-3')
+                div(class = 'form-group')
+                    input(type='Number' class='form-control')
+                    input(type='string' class='form-control')
+                button(type='submit', class='btn btn-success rounded-pill') Submit rating
+            a(href='/dashboard') Reuturn to dashboard
