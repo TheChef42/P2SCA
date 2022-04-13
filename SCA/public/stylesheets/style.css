@@ -2,36 +2,29 @@
 
 .center-div{
   padding-top: 10%;
-  font-weight: bolder;
 }
 
 .btn.btn-success{
   padding: .4em 2em;
-  background-color: deeppink;
+  background-color: #388f6b;
 }
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: pink;
-  font-size: larger;
-  font-weight: bold;
-
+  background-color: #68c97f;
+  background-image: url("https://images6.alphacoders.com/568/thumb-1920-568500.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 form{
-  font-weight: ;
   padding: 0 3em;
-  border: grey;
 }
 
 #login .title>h3{
   font-size: .8em;
-  font-weight: bold;
 }
 
 a {
   color: #00B7FF;
 }
-
