@@ -1,5 +1,6 @@
 var express = require('express');
 const User = require("../models/user");
+const Rating = require('../models/rating')
 const PickupOrder = require("../models/pickupOrder");
 var router = express.Router();
 
@@ -90,6 +91,27 @@ router.post('/update', async(req,res) =>{
     res.redirect('/dashboard')
   }catch{
     res.send('Error')
+  }
+})
+
+router.get('/ratingSystem',(req,res)=>{
+  res.render('ratingSystem', {user:req.session.user})
+    }
+)
+
+router.post('/rating', async (req,res)=>{
+  console.log(req.session.user)
+  const rating = new Rating ({
+    username: req.session.user,
+    rating: req.body.rating,
+    comment: req.body.comment
+  })
+  console.log(rating)
+  try{
+    await rating.save()
+    res.render('dashboard')
+  } catch{
+    res.send('Æv var')
   }
 })
 

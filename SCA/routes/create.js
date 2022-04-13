@@ -24,7 +24,7 @@ router.post('/', async(req,res) =>{
     }catch (err){
         res.send('Error')
     }} else{
-        res.render('user_form', { title: 'Create user' , userexists: 'true' });
+        res.render('user_form', { title: 'Create user' , userexists: 'true', user: users });
     }
 })
 module.exports = router;

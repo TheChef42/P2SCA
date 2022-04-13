@@ -6,7 +6,7 @@ block content
         div(class='container w-25 border py-5 mt-5')
             form(action='/rating' method='POST' class='pt-3')
                 div(class = 'form-group')
-                    input(type='Number' class='form-control')
-                    input(type='string' class='form-control')
+                    input(type='number' class='form-control' min=1 max=5 placeholder='Input a number from 1-5' name='rating')
+                    input(type='string' class='form-control' placeholder='Input your comment' name='comment')
                 button(type='submit', class='btn btn-success rounded-pill') Submit rating
-            a(href='/dashboard') Reuturn to dashboard
+            a(href='/dashboard') Return to dashboard
