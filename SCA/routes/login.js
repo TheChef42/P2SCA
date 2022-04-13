@@ -11,7 +11,7 @@ router.post('/',async (req,res)=>{
             //res.end('Login successful');
             res.redirect('/dashboard');
         }else{
-            res.render('index',{logout:'invalid password'})
+            res.render('index',{user:users,logout:'invalid password'})
         }
     }catch (err){
         res.render('index',{logout:'invalid username'})

@@ -13,6 +13,13 @@ block content
             input#address.form-control(type='text' placeholder='Placeholder 42' name='address' required='true' value=(undefined === user ? '' : user.address))
             label(for='region') Region:
             input#region.form-control(type='text' placeholder='Placeholder' name='region' required='true' value=(undefined === user ? '' : user.region))
+            p Who are you?
+            label(for='consumer') Consumer
+            input#consumer.form-control(type='radio' name='driver' required='true' value=(undefined === user ? 'false' : user.driver))
+            label(for='driver') Driver
+            input#driver.form-control(type='radio' name='driver' value=(undefined === user ? 'true' : user.driver))
+
+
 
         button.btn.btn-primary(type='submit') Submit
 

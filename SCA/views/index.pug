@@ -12,7 +12,7 @@ block content
                 =logout
       form(action='/login' method='POST' class='pt-3')
         div(class = 'form-group')
-          input(type='email', class='form-control', placeholder= 'email', name='email')
+          input(type='email', class='form-control', placeholder= 'email', name='email', value=(undefined===user ? '' : user.username))
           small(class = 'form-text text-left text-black') Register email address
         div(class = 'form-group')
           input(type='password', class='form-control', name='password', placeholder='password')
