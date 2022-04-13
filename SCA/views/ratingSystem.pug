@@ -6,7 +6,20 @@ block content
         div(class='container w-25 border py-5 mt-5')
             form(action='/rating' method='POST' class='pt-3')
                 div(class = 'form-group')
-                    input(type='number' class='form-control' min=1 max=5 placeholder='Input a number from 1-5' name='rating')
+                    label 1
+                    input(type='radio' name='rating' value=1)
+                    label 2
+                    input(type='radio' name='rating' value=2)
+                    label 3
+                    input(type='radio' name='rating' value=3)
+                    label 4
+                    input(type='radio' name='rating' value=4)
+                    label 5
+                    input(type='radio' name='rating' value=5)
+                    //input(type='number' class='form-control' min=1 max=5 placeholder='Input a number from 1-5' name='rating')
                     input(type='string' class='form-control' placeholder='Input your comment' name='comment')
+                    //button(type='comment' name= 'comment' class='btn btn-success rounded-pill') This suck
+                    //button(type='comment' name= 'comment' class='btn btn-success rounded-pill') lol
                 button(type='submit', class='btn btn-success rounded-pill') Submit rating
             a(href='/dashboard') Return to dashboard
+
