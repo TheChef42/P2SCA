@@ -85,9 +85,10 @@ router.post('/update', async(req,res) =>{
     region: req.body.region
   })
   const user = await User.findOne({username:req.body.username})
-  console.log(user._id)
+  console.log((user))
+  console.log(users)
   try{
-    await User.findByIdAndUpdate(user._id,users,{})
+    await User.findByIdAndUpdate(user._id,users)
     res.redirect('/dashboard')
   }catch{
     res.send('Error')
