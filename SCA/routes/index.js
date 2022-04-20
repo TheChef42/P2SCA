@@ -73,23 +73,19 @@ router.get('/pickup',(req,res)=>{
 
 router.get('/update',async(req,res)=>{
   const users = await User.findOne({username:req.session.user})
-  res.render('user_form',{user: users})
+  res.render('update_form',{user: users})
 })
 
 router.post('/update', async(req,res) =>{
-  const users = new User ({
-    username: req.body.username,
-    password: req.body.password,
-    driver: req.body.driver,
-    address: req.body.address,
-    region: req.body.region
-  })
-  const user = await User.findOne({username:req.body.username})
-  console.log((user))
-  console.log(users)
   try{
-    await User.findByIdAndUpdate(user._id,users)
-    res.redirect('/dashboard')
+    const users = await User.findOne({username:req.session.user})
+    users.username = req.body.username
+    users.password = req.body.password
+    users.address = req.body.address
+    users.region = req.body.region
+    users.username = req.body.username
+    const a1 = await users.save()
+    res.render('dashboard', {title:'update',logout:'User created successfully!'})
   }catch{
     res.send('Error')
   }

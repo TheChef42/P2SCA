@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+    div(class = 'text-center center-div')
+        div(class = 'container w-25 border py-5' id='update')
+            h1=title
+            form(method='POST' action='/update')
+                div.form-group
+                    label Email:
+                    input(class='form-control' type='email' placeholder='place@holder.com' name='username' required='false' value=(undefined===user ? '' : user.username) )
+                    label Password:
+                    input(class= 'form-control' type='password' placeholder='Password' name='password' required='false' value=(undefined===user ? '' : user.password))
+                    label Address:
+                    input(class='form-control' type='text' placeholder='Placeholder' name='address' required='false' value=(undefined === user ? '' : user.address))
+                    label Region:
+                    input(class='form-control' type='text' placeholder='Placeholder' name='region' required='false' value=(undefined === user ? '' : user.region))
+                    input(class='form-control-input' type='radio' name='driver' checked='true' required='false' value=(undefined === user ? 'false' : user.driver))
+                    label Consumer
+                    input(class='form-control-input' type='radio' name='driver' value=(undefined === user ? 'true' : user.driver))
+                    label Driver
+                button.btn.btn-primary(type='submit') Submit
+            a(href='/dashboard') Return to dashboard
