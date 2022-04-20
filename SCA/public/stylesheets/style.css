@@ -25,6 +25,11 @@ form{
   font-size: .8em;
 }
 
+.container{
+  border-radius: 25px;
+  background-color: rgba(220, 220, 220, 0.8);
+}
+
 a {
   color: black;
   font-weight: bold;
@@ -34,8 +39,10 @@ a {
 
 a:link, a:visited {
   /*background-color: white;*/
+  background-color: rgba(140, 140, 140, 0.5);
+  border-radius: 15px;
   color: black;
-  border: thin dotted white;
+  margin-top: 5px;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
