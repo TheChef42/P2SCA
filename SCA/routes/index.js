@@ -40,7 +40,7 @@ router.post('/delete',async(req,res)=>{
     const a1 = await users.delete()
     req.session.destroy(function(err) {
       if (err) {
-        consol.log(err);
+        console.log(err);
         res.send('Error')
       } else {
         res.render('index', {title: 'Login', logout: 'The user has been deleted!'})

@@ -11,9 +11,47 @@ block content
             input#password.form-control(type='password' placeholder='Password' name='password' required='true' value=(undefined===user ? '' : user.password))
             label(for='address') Address:
             input#address.form-control(type='text' placeholder='Placeholder 42' name='address' required='true' value=(undefined === user ? '' : user.address))
-            label(for='region') Region:
-            input#region.form-control(type='text' placeholder='Placeholder' name='region' required='true' value=(undefined === user ? '' : user.region))
-            p Who are you?
+            //label(for='region') Region:
+            //input#region.form-control(name='region' required='true' value=(undefined === user ? '' : user.region))
+
+            label(for='Region') Choose a region:
+            select#region(name='Region')
+                option(value='Águas Claras') Águas Claras
+                option(value='Arniqueira') Arniqueira
+                option(value='Brazlândia') Brazlândia
+                option(value='Candangolândia') Candangolândia
+                option(value='Ceilândia') Ceilândia
+                option(value='Cruzeiro') Cruzeiro
+                option(value='Fercal') Fercal
+                option(value='Gama') Gama
+                option(value='Guará') Guará
+                option(value='Itapoã') Itapoã
+                option(value='Jardim Botânico') Jardim Botânico
+                option(value='Lago Norte') Lago Norte
+                option(value='Lago Sul') Lago Sul
+                option(value='Núcleo Bandeirante') Núcleo Bandeirante
+                option(value='Paranoá') Paranoá
+                option(value='Park Way') Park Way
+                option(value='Planaltina') Planaltina
+                option(value='Plano Piloto') Plano Piloto
+                option(value='Recanto das Emas') Recanto das Emas
+                option(value='Riacho Fundo') Riacho Fundo
+                option(value='Riacho Fundo II') Riacho Fundo II
+                option(value='SCIA') SCIA
+                option(value='SIA') SIA
+                option(value='Samambaia') Samambaia
+                option(value='Santa Maria') Santa Maria
+                option(value='Sobradinho') Sobradinho
+                option(value='Sobradinho II') Sobradinho II
+                option(value='Sol Nascente/Pôr do Sol') Sol Nascente/Pôr do Sol
+                option(value='Sudoeste/Octogonal') Sudoeste/Octogonal
+                option(value='São Sebastião') São Sebastião
+                option(value='Taguatinga') Taguatinga
+                option(value='Varjão') Varjão
+                option(value='Vicente Pires') Vicente Pires
+
+
+            p What are you?
             label(for='consumer') Consumer
             input#consumer.form-control(type='radio' name='driver' required='true' value=(undefined === user ? 'false' : user.driver))
             label(for='driver') Driver
