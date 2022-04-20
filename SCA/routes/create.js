@@ -15,6 +15,7 @@ router.post('/', async(req,res) =>{
         driver: req.body.driver,
         address: req.body.address,
         region: req.body.region
+
     })
     const user = await User.findOne({username:req.body.username})
     if(user==null){
