@@ -1,25 +1,26 @@
+extends layout
+
 block content
-    h1=title
 
-    form(method='POST' action='')
-        div.form-group
-            label(for='username') Email:
-            input#username.form-control(type='email' placeholder='place@holder.com' name='username' required='true' value=(undefined===user ? '' : user.username) )
-            if (userexists === 'true')
-                p Email is already in use
-            label(for='password') Password:
-            input#password.form-control(type='password' placeholder='Password' name='password' required='true' value=(undefined===user ? '' : user.password))
-            label(for='address') Address:
-            input#address.form-control(type='text' placeholder='Placeholder 42' name='address' required='true' value=(undefined === user ? '' : user.address))
-            label(for='region') Region:
-            input#region.form-control(type='text' placeholder='Placeholder' name='region' required='true' value=(undefined === user ? '' : user.region))
-            p Who are you?
-            label(for='consumer') Consumer
-            input#consumer.form-control(type='radio' name='driver' required='true' value=(undefined === user ? 'false' : user.driver))
-            label(for='driver') Driver
-            input#driver.form-control(type='radio' name='driver' value=(undefined === user ? 'true' : user.driver))
-
-
-
-        button.btn.btn-primary(type='submit') Submit
+    div(class = 'text-center center-div')
+        div(class = 'container w-25 border py-5')
+            h1=title
+            form(method='POST' action='')
+                div.form-group
+                    label(for='username') Email:
+                    input#username.form-control(type='email' placeholder='place@holder.com' name='username' required='true' value=(undefined===user ? '' : user.username) )
+                    if (userexists === 'true')
+                        p Email is already in use
+                    label(for='password') Password:
+                    input#password.form-control(type='password' placeholder='Password' name='password' required='true' value=(undefined===user ? '' : user.password))
+                    label(for='address') Address:
+                    input#address.form-control(type='text' placeholder='Placeholder' name='address' required='true' value=(undefined === user ? '' : user.address))
+                    label(for='region') Region:
+                    input#region.form-control(type='text' placeholder='Placeholder' name='region' required='true' value=(undefined === user ? '' : user.region))
+                    p Who are you?
+                    input#consumer.form-control-input(type='radio' name='driver' checked='true' required='true' value=(undefined === user ? 'false' : user.driver))
+                    label(for='consumer') Consumer
+                    input#driver.form-control-input(type='radio' name='driver' value=(undefined === user ? 'true' : user.driver))
+                    label(for='driver') Driver
+                button.btn.btn-primary(type='submit') Submit
 
