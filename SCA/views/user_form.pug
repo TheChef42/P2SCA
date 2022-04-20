@@ -11,16 +11,16 @@ block content
                     input#username.form-control(type='email' placeholder='place@holder.com' name='username' required='true' value=(undefined===user ? '' : user.username) )
                     if (userexists === 'true')
                         p Email is already in use
-                    label(for='password') Password:
-                    input#password.form-control(type='password' placeholder='Password' name='password' required='true' value=(undefined===user ? '' : user.password))
-                    label(for='address') Address:
-                    input#address.form-control(type='text' placeholder='Placeholder' name='address' required='true' value=(undefined === user ? '' : user.address))
-                    label(for='region') Region:
-                    input#region.form-control(type='text' placeholder='Placeholder' name='region' required='true' value=(undefined === user ? '' : user.region))
+                    label Password:
+                    input(class= 'form-control' type='password' placeholder='Password' name='password' required='true' value=(undefined===user ? '' : user.password))
+                    label Address:
+                    input(class='form-control' type='text' placeholder='Placeholder' name='address' required='true' value=(undefined === user ? '' : user.address))
+                    label Region:
+                    input(class='form-control' type='text' placeholder='Placeholder' name='region' required='true' value=(undefined === user ? '' : user.region))
                     p Who are you?
-                    input#consumer.form-control-input(type='radio' name='driver' checked='true' required='true' value=(undefined === user ? 'false' : user.driver))
-                    label(for='consumer') Consumer
-                    input#driver.form-control-input(type='radio' name='driver' value=(undefined === user ? 'true' : user.driver))
-                    label(for='driver') Driver
+                    input(class='form-control-input' type='radio' name='driver' checked='true' required='true' value=(undefined === user ? 'false' : user.driver))
+                    label Consumer
+                    input(class='form-control-input' type='radio' name='driver' value=(undefined === user ? 'true' : user.driver))
+                    label Driver
                 button.btn.btn-primary(type='submit') Submit
 
