@@ -2,8 +2,8 @@ extends layout
 
 block content
 
-    div(class='text-center center-div mt-5' id='pickup')
-        div(class='container w-25 border py-5 mt-5')
+    div(class='text-center center-div' id='pickup')
+        div(class='container w-25 border py-4')
             form(action='/upload' method='POST' enctype='multipart/form-data')
                 div(class = 'form-group')
                     input(type='file', name='uploadImage')

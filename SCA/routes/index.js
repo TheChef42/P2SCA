@@ -60,7 +60,7 @@ router.post ('/pickUpOrder', async (req, res) => {
       region: users.region
     })
     const a1 = await pickupOrder.save()
-    res.render('dashboard', {title: 'Pickup order', logout: 'the pick up order has been made!'})
+    res.redirect('dashboard')
 
   } catch(err) {
     res.send('Error')
@@ -69,6 +69,10 @@ router.post ('/pickUpOrder', async (req, res) => {
 })
 router.get('/pickup',(req,res)=>{
   res.render('pickup')
+})
+
+router.get('/pickUpOrder',(req,res)=>{
+  res.render('dashboard')
 })
 
 router.get('/update',async(req,res)=>{
@@ -85,7 +89,7 @@ router.post('/update', async(req,res) =>{
     users.region = req.body.region
     users.username = req.body.username
     const a1 = await users.save()
-    res.render('dashboard', {title:'update',logout:'User created successfully!'})
+    res.redirect('dashboard', {title:'update',logout:'User created successfully!'})
   }catch{
     res.send('Error')
   }
@@ -98,15 +102,14 @@ router.get('/ratingSystem',(req,res)=>{
 
 router.post('/rating', async (req,res)=>{
   console.log(req.session.user)
-  const rating = new Rating ({
-    username: req.session.user,
-    rating: req.body.rating,
-    comment: req.body.comment
-  })
-  console.log(rating)
   try{
+    const rating = new Rating ({
+      username: req.session.user,
+      rating: req.body.rating,
+      comment: req.body.comment
+    })
     await rating.save()
-    res.render('dashboard')
+    res.redirect('dashboard')
   } catch{
     res.send('Æv var')
   }
