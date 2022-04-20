@@ -89,7 +89,7 @@ router.post('/update', async(req,res) =>{
     users.region = req.body.region
     users.username = req.body.username
     const a1 = await users.save()
-    res.redirect('dashboard', {title:'update',logout:'User created successfully!'})
+    res.redirect('dashboard')
   }catch{
     res.send('Error')
   }
