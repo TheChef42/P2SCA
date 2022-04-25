@@ -1,8 +1,11 @@
 var express = require('express');
 const User = require("../models/user");
-const Rating = require('../models/rating')
 const PickupOrder = require("../models/pickupOrder");
+const Rating = require('../models/rating')
+const bodyparser = require("express");
 var router = express.Router();
+express().set("view engine", "pug");
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -113,15 +116,23 @@ router.post('/rating', async (req,res)=>{
   } catch{
     res.send('Æv var')
   }
+
+
 })
 
 router.get('/pickuplist', async(req, res) => {
   try {
     const pickups = await PickupOrder.find()
-    res.json(pickups)
+    //res.json(pickups);
+    res.render('test', {
+      pickups: pickups
+    });
+
   }catch(err){
-    res.send('respond with a resource');
+    res.render('error');
+    //res.render('pickups');
   }
-});
+
+  });
 
 module.exports = router;
