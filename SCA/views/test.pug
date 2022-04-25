@@ -2,13 +2,18 @@ extends layout
 
 block content
     div(class='text-center center-div')
-        div(class='container w-25 border  py-4')
+        div(class='container border  py-4')
             if pickups != null
                 h2 Pickups
             else
                 h2 No Pickups
-            ul
+            table(style='width:100%')
+                th Date
+                th Address
+                th Region
                 for pickup in pickups
-                    li=pickup.date
-                    li= pickup.address
-                    li= pickup.region
+                    tr
+                        td= pickup.date
+                        td= pickup.address
+                        td= pickup.region
+            input(type='button' onclick='window.print()' value='Print')
