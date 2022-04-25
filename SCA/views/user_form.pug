@@ -54,7 +54,7 @@ block content
                         option(value='Vicente Pires') Vicente Pires
                     p What are you?
                     label Consumer
-                    input(class='form-control-input' type='radio' name='driver' required='true' value=(undefined === user ? 'false' : user.driver))
+                    input(class='form-control-input' type='radio' name='driver' checked='true' required='true' value=(undefined === user ? 'false' : user.driver))
                     label Driver
                     input(class='form-control-input' type='radio' name='driver' value=(undefined === user ? 'true' : user.driver))
 

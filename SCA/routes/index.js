@@ -115,4 +115,13 @@ router.post('/rating', async (req,res)=>{
   }
 })
 
+router.get('/pickuplist', async(req, res) => {
+  try {
+    const pickups = await PickupOrder.find()
+    res.json(pickups)
+  }catch(err){
+    res.send('respond with a resource');
+  }
+});
+
 module.exports = router;
