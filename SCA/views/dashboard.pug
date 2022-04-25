@@ -6,10 +6,13 @@ block content
         div(class='container w-25 border py-4')
 
             h3 Welcome to the Dashboard
-            h5 #{locals.user ? user:'User'}
+            h5 #{locals.user ? user.username:'User'}
+            if(locals.driver)
+                h5 Driver
             a(href='/logout') Log out
             a(href='/delete') Delete
-            a(href='/pickup') Pick up order
+            if(!locals.driver)
+                a(href='/pickup') Pick up order
             a(href='/ratingSystem') Rating system
             a(href='/upload') Upload image
             a(href='/update') Update

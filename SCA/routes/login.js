@@ -9,7 +9,8 @@ router.post('/',async (req,res)=>{
         if(req.body.email == users.username && req.body.password == users.password){
             req.session.user = req.body.email;
             //res.end('Login successful');
-            res.redirect('/dashboard');
+            //res.redirect('/dashboard');
+            res.render('dashboard',{user:users,driver:users.driver});
         }else{
             res.render('index',{user:users,logout:'invalid password'})
         }
