@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    div(class='text-center center-div')
+        div(class='container w-25 border  py-4')
+            if pickups != null
+                h2 Pickups
+            else
+                h2 No Pickups
+            ul
+                for pickup in pickups
+                    li=pickup.date
+                    li= pickup.address
+                    li= pickup.region
