@@ -87,7 +87,7 @@ router.post('/update', async(req,res) =>{
     users.password = req.body.password
     users.address = req.body.address
     users.region = req.body.region
-    users.username = req.body.username
+    users.driver = req.body.driver
     const a1 = await users.save()
     res.redirect('dashboard')
   }catch{
