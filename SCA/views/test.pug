@@ -11,9 +11,12 @@ block content
                 th Date
                 th Address
                 th Region
+                th Picture
                 for pickup in pickups
                     tr
                         td= pickup.date
                         td= pickup.address
                         td= pickup.region
+                        td
+                            img(src='/images/1650447174096.png')
             input(type='button' onclick='window.print()' value='Print')
