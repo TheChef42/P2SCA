@@ -4,7 +4,6 @@ block content
 
     div(class='text-center center-div' id='login')
         div(class='container w-25 border py-4')
-
             h3 Welcome to the Dashboard
             h5 #{locals.user ? user.username:'User'}
             if(locals.driver)
@@ -17,3 +16,4 @@ block content
             a(href='/upload') Upload image
             a(href='/update') Update
             a(href='/pickuplist') Pick up List
+            img(src='')
