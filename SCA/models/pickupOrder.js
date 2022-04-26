@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 
 
 const pickupOrderSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
         required: true
@@ -11,6 +15,10 @@ const pickupOrderSchema = new mongoose.Schema({
         required: true
     },
     region: {
+        type: String,
+        required: true
+    },
+    url: {
         type: String,
         required: true
     }

@@ -3,13 +3,17 @@ var router = express.Router();
 var path = require('path')
 
 const multer = require('multer');
+const User = require("../models/user");
+const PickupOrder = require("../models/pickupOrder");
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
-        cb(null, 'uploadImage');
+        cb(null, './public/images');
     },
     filename: (req, file, cb) => {
+        const imageUrl = Date.now() + path.extname(file.originalname)
         console.log(file)
-        cb(null, Date.now() + path.extname(file.originalname))
+        cb(null, imageUrl)
     }
 })
 
@@ -17,19 +21,25 @@ const upload = multer ({storage:storage})
 
 
 router.post('/', upload.single('uploadImage'), async (req, res)=>{
-    res.render('upload');
+    const users = await User.findOne({username:req.session.user})
+    console.log(await storage.getFilename.imageUrl)
+    const pickupOrder = new PickupOrder ({
+        username: users.username,
+        date: req.body.date,
+        address: users.address,
+        region: users.region,
+        url: 'test2'
+    })
+    const a1 = await pickupOrder.save()
+    res.render('dashboard',{user:users,driver:users.driver});
 })
 
 router.get('/',(req,res)=>{
     if(req.session.user){
-        res.render('upload',{user:req.session.user})
+        res.render('pickup',{user:req.session.user})
     }else{
         res.send('Unauthorized User')
     }
-})
-
-router.get('/', async (req, res)=>{
-    res.render('upload');
 })
 
 module.exports = router;

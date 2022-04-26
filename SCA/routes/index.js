@@ -53,14 +53,16 @@ router.post('/delete',async(req,res)=>{
     res.send('Error')
   }
 })
-
+/*
 router.post ('/pickUpOrder', async (req, res) => {
   try{
     const users = await User.findOne({username:req.session.user})
     const pickupOrder = new PickupOrder ({
+      username: users.username,
       date: req.body.date,
       address: users.address,
-      region: users.region
+      region: users.region,
+      url:
     })
     const a1 = await pickupOrder.save()
     res.redirect('dashboard')
@@ -70,14 +72,19 @@ router.post ('/pickUpOrder', async (req, res) => {
   }
 
 })
-router.get('/pickup',(req,res)=>{
-  res.render('pickup')
-})
+
 
 router.get('/pickUpOrder',(req,res)=>{
   res.render('dashboard')
 })
-
+*/
+router.get('/pickup',(req,res)=>{
+  if(req.session.user){
+    res.render('pickup',{user:req.session.user})
+  }else{
+    res.send('Unauthorized User')
+  }
+})
 router.get('/update',async(req,res)=>{
   const users = await User.findOne({username:req.session.user})
   res.render('update_form',{user: users})
