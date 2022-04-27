@@ -6,6 +6,7 @@ var imageUrl = ''
 const multer = require('multer');
 const User = require("../models/user");
 const PickupOrder = require("../models/pickupOrder");
+var imageUrl = ""
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
