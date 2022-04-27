@@ -144,7 +144,31 @@ router.get('/pickuplist', async(req, res) => {
 
 router.get('/pictures',async(req,res)=>{
   const pickup = await PickupOrder.find()
-  res.render('imageRating',{pickup: pickup,sessionuser:req.session.user})
+  res.render('viewImage',{pickups: pickup, user:req.session.user})
+})
+
+router.get('/rating/:id', async(req,res)=>{
+  try {
+    res.render('ratingSystem', {url: req.params.id});
+  }catch (err) {
+    res.send('Error')
+  }
+})
+
+router.post('/rating', async (req,res)=>{
+  try{
+    const rating = new Rating ({
+      username: pickupOrder.user,
+      rating: req.body.rating,
+      comment: req.body.comment
+    })
+    await rating.save()
+    res.redirect('dashboard')
+  } catch{
+    res.send('Æv var')
+  }
+
+
 })
 
 module.exports = router;
