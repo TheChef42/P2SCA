@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path')
+var imageUrl = ''
 
 const multer = require('multer');
 const User = require("../models/user");
@@ -11,8 +12,7 @@ const storage = multer.diskStorage({
         cb(null, './public/images');
     },
     filename: (req, file, cb) => {
-        const imageUrl = Date.now() + path.extname(file.originalname)
-        console.log(file)
+        imageUrl = Date.now() + path.extname(file.originalname)
         cb(null, imageUrl)
     }
 })
@@ -22,13 +22,12 @@ const upload = multer ({storage:storage})
 
 router.post('/', upload.single('uploadImage'), async (req, res)=>{
     const users = await User.findOne({username:req.session.user})
-    console.log(await storage.getFilename.imageUrl)
     const pickupOrder = new PickupOrder ({
         username: users.username,
         date: req.body.date,
         address: users.address,
         region: users.region,
-        url: 'test2'
+        url: imageUrl
     })
     const a1 = await pickupOrder.save()
     res.render('dashboard',{user:users,driver:users.driver});
