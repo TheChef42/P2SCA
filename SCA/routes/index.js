@@ -142,4 +142,9 @@ router.get('/pickuplist', async(req, res) => {
 
   });
 
+router.get('/pictures',async(req,res)=>{
+  const pickup = await PickupOrder.find()
+  res.render('imageRating',{pickup: pickup,sessionuser:req.session.user})
+})
+
 module.exports = router;
