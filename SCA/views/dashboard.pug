@@ -7,7 +7,7 @@ block content
             img(src='/images/1234.png' class='w-50')
             h3 Welcome to the Dashboard
             h5 #{locals.user ? user.username:'User'}
-            //h6 #{average}
+            h6 #{'Average rating ' + average.toFixed(2)}
             if(locals.driver)
                 h5 Driver
             a(href='/logout') Log out
