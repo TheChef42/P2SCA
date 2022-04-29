@@ -3,20 +3,29 @@ extends layout
 block content
     div(class='text-center center-div')
         div(class='container border  py-4')
-            if pickups != null
-                h2 Pickups
-            else
-                h2 No Pickups
-            table(style='width:100%')
-                th Date
-                th Address
-                th Region
-                th Picture
-                for pickup in pickups
-                    tr
-                        td= pickup.date
-                        td= pickup.address
-                        td= pickup.region
-                        td
-                            img(src='/images/'+pickup.url class='w-25 h-25')
+            form(action='/selectedOrder' method='POST' id='select')
+            div(class = 'form-group')
+                if pickups != null
+                    h2 Pickups
+                else
+                    h2 No Pickups
+                table(style='width:100%')
+                    th Date
+                    th Address
+                    th Region
+                    th Picture
+                    th Status
+                    th Select order
+                    for pickup in pickups
+                        tr
+                            td= pickup.date
+                            td= pickup.address
+                            td= pickup.region
+                            td
+                                img(src='/images/'+pickup.url class='w-25 h-25')
+                            td=pickup.driver
+                            td=pickup.status
+                            td
+                                input(type = 'checkbox', name=selectedOrder, value = pickup.url, form='select')
+            button.btn.btn-primary(type='submit', accept=selectedOrder, form='select') Submit
             input(type='button' onclick='window.print()' value='Print')

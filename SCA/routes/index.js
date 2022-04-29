@@ -169,6 +169,32 @@ router.post('/rating/:id', async (req,res)=>{
     res.send('Æv var')
   }
 
+  router.get('/selectedOrder', async(req,res)=>{
+    try {
+      res.render('test', {url: req.params.url});
+    }catch (err) {
+      res.send('Error')
+    }
+  })
+
+  router.post('/selectedOrder', async(req,res) =>{
+    try{
+      const driver = req.session.user
+      console.log(req.session.user)
+      const pickup = await PickupOrder.findOne({url:req.body.url})
+      pickup.username = pickup.username
+      pickup.password = pickup.password
+      pickup.address = pickup.address
+      pickup.region = pickup.region
+      pickup.driver = driver
+      pickup.stutus = 'Accepted'
+      const a1 = await users.save()
+      res.redirect('dashboard')
+    }catch{
+      res.send('Error')
+    }
+  })
+
 
 })
 

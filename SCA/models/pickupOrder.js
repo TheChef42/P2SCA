@@ -21,6 +21,14 @@ const pickupOrderSchema = new mongoose.Schema({
     url: {
         type: String,
         required: true
+    },
+    driver: {
+        type: String,
+        required: false
+    },
+    status: {
+        type: String,
+        required: false
     }
 })
 module.exports = mongoose.model('PickupOrder',pickupOrderSchema)

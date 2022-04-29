@@ -27,7 +27,8 @@ router.post('/', upload.single('uploadImage'), async (req, res)=>{
         date: req.body.date,
         address: users.address,
         region: users.region,
-        url: imageUrl
+        url: imageUrl,
+        status: 'requested'
     })
     const a1 = await pickupOrder.save()
     res.render('dashboard',{user:users,driver:users.driver});

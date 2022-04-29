@@ -12,7 +12,7 @@ const ratingSystemSchema = new mongoose.Schema({
     },
     comment: {
         type: String,
-        required: true
+        required: false
     }
 })
 module.exports = mongoose.model('Rating', ratingSystemSchema)
