@@ -170,25 +170,28 @@ router.post('/rating/:id', async (req,res)=>{
   }
 
   router.get('/selectedOrder', async(req,res)=>{
-    try {
-      res.render('test', {url: req.params.url});
+    res.render('index', { title: 'Login system' });
+    /*try {
+      res.render('test')
     }catch (err) {
       res.send('Error')
-    }
+    }*/
   })
 
-  router.post('/selectedOrder', async(req,res) =>{
+  router.post('/pickuplist', async(req,res) =>{
     try{
       const driver = req.session.user
       console.log(req.session.user)
       const pickup = await PickupOrder.findOne({url:req.body.url})
-      pickup.username = pickup.username
-      pickup.password = pickup.password
-      pickup.address = pickup.address
-      pickup.region = pickup.region
-      pickup.driver = driver
-      pickup.stutus = 'Accepted'
-      const a1 = await users.save()
+      const pickUp = new pickup({
+        username: pickup.username,
+        password: pickup.password,
+        address: pickup.address,
+        region: pickup.region,
+        driver: driver,
+        status: 'Accepted'
+      })
+      const a1 = await pickUp.save()
       res.redirect('dashboard')
     }catch{
       res.send('Error')
