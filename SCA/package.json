@@ -21,6 +21,7 @@
     "node-table-to-csv": "^0.1.0",
     "nodemon": "^2.0.15",
     "pug": "2.0.0-beta11",
+    "serve-favicon": "^2.5.0",
     "uuid": "^8.3.2"
   }
 }
