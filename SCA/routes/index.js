@@ -155,10 +155,11 @@ router.get('/rating/:id', async(req,res)=>{
   }
 })
 
-router.post('/rating', async (req,res)=>{
+router.post('/rating/:id', async (req,res)=>{
+  const pickup = await PickupOrder.findOne({url:req.params.id})
   try{
     const rating = new Rating ({
-      username: pickupOrder.user,
+      username: pickup.username,
       rating: req.body.rating,
       comment: req.body.comment
     })

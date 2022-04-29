@@ -7,6 +7,7 @@ block content
             img(src='/images/1234.png' class='w-50')
             h3 Welcome to the Dashboard
             h5 #{locals.user ? user.username:'User'}
+            h6 #{'Average rating ' + average.toFixed(2)}
             if(locals.driver)
                 h5 Driver
             a(href='/logout') Log out
@@ -14,7 +15,9 @@ block content
             if(!locals.driver)
                 a(href='/pickup') Pick up order
             a(href='/ratingSystem') Rating system
-            a(href='/pictures') See uploaded pictures
+            if(!locals.driver)
+                a(href='/pictures') Rate a picture
             a(href='/update') Update
-            a(href='/pickuplist') Pick up List
+            if(locals.driver)
+                a(href='/pickuplist') Pick up List
             img(src='')
