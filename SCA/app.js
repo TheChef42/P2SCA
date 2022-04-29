@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var favicon =require('serve-favicon')
 const bodyparser = require('body-parser');
 const session = require('express-session');
 const { v4: uuidv4 } = require('uuid');
@@ -33,6 +34,7 @@ con.on('open',function (){
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -42,6 +44,7 @@ app.use('/assets', express.static(path.join(__dirname,'public/assets')))
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(express.static('public'));
+app.use(favicon(path.join(__dirname, '/public/images', 'favicon.ico')))
 
 app.use(session({
   secret: uuidv4(),
