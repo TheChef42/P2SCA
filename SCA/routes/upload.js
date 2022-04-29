@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path')
-var imageUrl = ''
 
 const multer = require('multer');
 const User = require("../models/user");
