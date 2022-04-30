@@ -3,13 +3,12 @@ extends layout
 block content
     div(class='text-center center-div')
         div(class='container border  py-4')
-            form(action='/selectedOrder' method='GET' id='select' name='select')
-                button.btn.btn-primary(type='submit', form='select') Submit
-            div(class = 'form-group')
             if pickups != null
                 h2 Pickups
             else
                 h2 No Pickups
+            if(confirmation == 'Pickup selected')
+                p Pickup selected
             table(style='width:100%')
                 th Date
                 th Address

@@ -4,23 +4,23 @@ const mongoose = require('mongoose')
 const pickupOrderSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true
+        required: false
     },
     date: {
         type: Date,
-        required: true
+        required: false
     },
     address: {
         type: String,
-        required: true
+        required: false
     },
     region: {
         type: String,
-        required: true
+        required: false
     },
     url: {
         type: String,
-        required: true
+        required: false
     },
     driver: {
         type: String,
