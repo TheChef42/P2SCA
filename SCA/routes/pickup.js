@@ -23,7 +23,7 @@ router.get('/selectedOrder', async(req,res)=>{
       res.send('Error')
     }*/
 })
-router.post('/selectedOrder', async(req,res) =>{
+router.post('/list', async(req,res) =>{
     try{
         await PickupOrder.findByIdAndUpdate(req.body.id,{driver: req.session.user, status: 'accepted'})
         const pickups = await PickupOrder.find({status:'requested'}).sort({date:'asc',region:'asc'})
