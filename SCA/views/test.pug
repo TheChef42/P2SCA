@@ -26,6 +26,8 @@ block content
                         td=pickup.driver
                         td=pickup.status
                         td
-                            input(type = 'checkbox', name='selectedOrder', value = pickup.url, form='select')
-            //button.btn.btn-primary(type='submit', form='select') Submit
+                            form(action='/pickup/selectedOrder' method='POST' id='select' name='select')
+                                div(class = 'form-group')
+                                    button.btn.btn-primary(type = 'submit', name='id', value = pickup._id, form='select') Select
+            //(type='submit', form='select') Submit
             input(type='button' onclick='window.print()' value='Print')

@@ -127,20 +127,6 @@ router.post('/rating', async (req,res)=>{
 
 })
 
-router.get('/pickuplist', async(req, res) => {
-  try {
-    const pickups = await PickupOrder.find()
-    //res.json(pickups);
-    res.render('test', {
-      pickups: pickups
-    });
-
-  }catch(err){
-    res.render('error');
-    //res.render('pickups');
-  }
-
-  });
 
 router.get('/pictures',async(req,res)=>{
   const pickup = await PickupOrder.find()
@@ -177,28 +163,6 @@ router.post('/rating/:id', async (req,res)=>{
       res.send('Error')
     }*/
   })
-
-  router.post('/pickuplist', async(req,res) =>{
-    try{
-      const driver = req.session.user
-      console.log(req.session.user)
-      const pickup = await PickupOrder.findOne({url:req.body.url})
-      const pickUp = new pickup({
-        username: pickup.username,
-        password: pickup.password,
-        address: pickup.address,
-        region: pickup.region,
-        driver: driver,
-        status: 'Accepted'
-      })
-      const a1 = await pickUp.save()
-      res.redirect('dashboard')
-    }catch{
-      res.send('Error')
-    }
-  })
-
-
 })
 
 module.exports = router;
