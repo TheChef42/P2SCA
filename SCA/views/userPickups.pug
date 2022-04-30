@@ -15,7 +15,6 @@ block content
                 th Address
                 th Region
                 th Picture
-                th Driver
                 th Status
                 th Select order
                 for pickup in pickups
@@ -25,16 +24,11 @@ block content
                         td= pickup.region
                         td
                             img(src='/images/'+pickup.url class='w-25 h-25')
-                        td=pickup.driver
                         td=pickup.status
                         td
                             form(action='' method='POST' id='select' name='select')
                                 div(class = 'form-group')
                                     if(pickup.status !== 'confirmed')
-                                        button.btn.btn-primary(type = 'submit', name='id', value = pickup._id, form='select')
-                                            if(pickup.status === 'requested')
-                                                p Accept
-                                            else
-                                                p Confirm pickup
+                                        button.btn.btn-primary(type = 'submit', name='id', value = pickup._id, form='select') Delete
             //(type='submit', form='select') Submit
             input(type='button' onclick='window.print()' value='Print')

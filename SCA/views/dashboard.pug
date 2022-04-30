@@ -17,7 +17,9 @@ block content
             a(href='/ratingSystem') Rating system
             if(!locals.driver)
                 a(href='/pictures') Rate a picture
-            a(href='/update') Update
+                a(href='/pickup/userOrder') Selected pickups
             if(locals.driver)
                 a(href='/pickup/list') Pick up List
+                a(href='/pickup/myOrder') Selected pickups
+            a(href='/update') Update
             img(src='')
