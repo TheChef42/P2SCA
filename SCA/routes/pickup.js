@@ -64,7 +64,6 @@ router.get('/userOrder', async(req, res) => {
 router.post('/userOrder', async(req, res) => {
     try{
         await PickupOrder.findByIdAndDelete(req.body.id)
-        console.log(req.body.id)
         const pickups = await PickupOrder.find({username:req.session.user}).sort({date:'asc',region:'asc'})
         res.render('userPickups', {pickups: pickups, confirmation: 'Pickup deleted' });
     }catch{
@@ -75,9 +74,6 @@ router.post('/userOrder', async(req, res) => {
 router.post('/pickupRating',async(req,res)=>{
     try {
         const pickups = await PickupOrder.findById(req.body.id)
-        console.log(pickups)
-        console.log(req.body.id)
-        console.log(req.params.id)
         res.render('ratingSystem', {pickups: pickups,url: pickups.url});
     }catch(err){
         res.render('error');
@@ -85,11 +81,9 @@ router.post('/pickupRating',async(req,res)=>{
     }
 });
 router.post('/pickupRatingg',async(req,res)=>{
-    const pickup = await PickupOrder.findById(req.body.id)
-    console.log(req.body.id)
     try{
         const rating = new Rating ({
-            username: pickup.driver,
+            username: req.body.driver,
             rating: req.body.rating,
             comment: req.body.comment
         })
