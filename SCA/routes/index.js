@@ -13,9 +13,13 @@ router.get('/', function(req, res, next) {
 });
 
 //route for dashboard
-router.get('/dashboard',(req,res)=>{
+router.get('/dashboard',async(req,res)=>{
+  console.log(req.session.user)
+  const users = await User.findOne({username:req.session.user})
+  const rating = await Rating.find({username:req.session.user}).select('rating')
+  average = rating.reduce((sum, { rating }) => sum + rating, 0) / rating.length
   if(req.session.user){
-    res.render('dashboard',{user:req.session.user})
+    res.render('dashboard',{user:users,driver:users.driver,average: average})
   }else{
     res.send('Unauthorized User')
   }
