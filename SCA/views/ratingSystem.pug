@@ -5,7 +5,7 @@ block content
     div(class='text-center center-div' id='Rate us')
         div(class='container w-25 border py-4')
             img(src='/images/' + url class='w-25 h-25')
-            form(action='/rating' method='POST' class='pt-3')
+            form(action='/pickup/pickupRatingg' method='POST' class='pt-3' )
                 div(class = 'form-group')
                     label 1
                     input(type='radio' name='rating' value=1)
@@ -22,5 +22,5 @@ block content
                     //input(type='button' class='form-control' placeholder='this sucks' name='comment')
                     //button(type='comment' name= 'comment' class='btn btn-success rounded-pill') This suck
                     //button(type='comment' name= 'comment' class='btn btn-success rounded-pill') lol
-                button(type='submit', class='btn btn-success rounded-pill') Submit rating
+                button(type='submit', class='btn btn-success rounded-pill', value = pickups._id, name = 'id') Submit rating
             a(href='/dashboard') Return to dashboard

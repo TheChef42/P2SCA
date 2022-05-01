@@ -26,9 +26,14 @@ block content
                             img(src='/images/'+pickup.url class='w-25 h-25')
                         td=pickup.status
                         td
-                            form(action='' method='POST' id='select' name='select')
-                                div(class = 'form-group')
-                                    if(pickup.status !== 'confirmed')
-                                        button.btn.btn-primary(type = 'submit', name='id', value = pickup._id, form='select') Delete
+                            if(pickup.status !== 'confirmed')
+                                form(action='/pickup/userOrder' method='POST' id='delete' name='delete')
+                                    div(class = 'form-group')
+                                        button.btn.btn-primary(type = 'submit', name='id', value = pickup._id, form='delete') Delete
+                            else
+                                form(action='/pickup/pickupRating' method='POST' id='rating' name='rating')
+                                    div(class = 'form-group')
+                                        button.btn.btn-primary(type = 'submit', name='id', value = pickup._id, form='rating') Rating
+
             //(type='submit', form='select') Submit
             input(type='button' onclick='window.print()' value='Print')

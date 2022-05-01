@@ -105,7 +105,7 @@ router.post('/update', async(req,res) =>{
   }
 })
 
-router.get('/ratingSystem',(req,res)=>{
+router.get('/rating',(req,res)=>{
   res.render('ratingSystem', {user:req.session.user})
     }
 )
@@ -119,12 +119,10 @@ router.post('/rating', async (req,res)=>{
       comment: req.body.comment
     })
     await rating.save()
-    res.redirect('dashboard')
+    res.redirect('/dashboard')
   } catch{
     res.send('Æv var')
   }
-
-
 })
 
 
@@ -150,7 +148,7 @@ router.post('/rating/:id', async (req,res)=>{
       comment: req.body.comment
     })
     await rating.save()
-    res.redirect('dashboard')
+    res.redirect('/dashboard')
   } catch{
     res.send('Æv var')
   }
