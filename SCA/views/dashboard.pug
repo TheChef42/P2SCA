@@ -1,9 +1,9 @@
 extends layout
 
 block content
-
+    title='SCA - Dashboard'
     div(class='text-center center-div' id='login')
-        div(class='container w-25 border')
+        div(class='container w-25 border pt-3')
             img(src='/images/logo_trans.png' class='w-50')
             h3 Welcome to the Dashboard
             h5 #{locals.user ? user.username:'User'}
@@ -20,5 +20,5 @@ block content
             if(locals.driver)
                 a(href='/pickup/list') Pick up List
                 a(href='/pickup/myOrder') Selected pickups
-            a(href='/update') Update
+            //a(href='/update') Update
             img(src='')

@@ -15,9 +15,8 @@ dotenv.config()
 const url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.beh3d.mongodb.net/CRUD?retryWrites=true&w=majority`
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
-var createRouter = require('./routes/create');
+var createRouter = require('./routes/createUser');
 var pickupRouter = require('./routes/pickup')
 
 const bodyParser = require("body-parser");
@@ -53,7 +52,6 @@ app.use(session({
 }));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/login',loginRouter);
 app.use('/create',createRouter);
 app.use('/pickup',pickupRouter)

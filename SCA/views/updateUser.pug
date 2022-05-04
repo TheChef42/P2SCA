@@ -1,17 +1,16 @@
 extends layout
 
 block content
-
+    title='SCA - Update information about you'
     div(class = 'text-center center-div')
         div(class = 'container w-25 border py-3' id='update')
-            h1=title
             h2='Update user'
             form(method='POST' action='/update')
                 div.form-group
                     label Email:
                     input(class='form-control' type='email' placeholder='place@holder.com' name='username' required='false' value=(undefined===user ? '' : user.username) )
                     label Password:
-                    input(class= 'form-control' type='password' placeholder='Password' name='password' required='false' value=(undefined===user ? '' : user.password))
+                    input(class= 'form-control' type='password' placeholder='Password' name='password' required='false')
                     label Address:
                     input(class='form-control' type='text' placeholder='Placeholder' name='address' required='false' value=(undefined === user ? '' : user.address))
                     label Region:

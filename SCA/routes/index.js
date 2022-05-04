@@ -72,16 +72,15 @@ router.get('/update',async(req,res)=>{
  //TODO fix update
 router.post('/update', async(req,res) =>{
   try{
-    const users = await User.findOne({username:req.session.user})
+    const users = await User.updateOne({username:req.session.user})
     users.username = req.body.username
-    users.password = req.body.password
     users.address = req.body.address
     users.region = req.body.region
     users.driver = req.body.driver
-    const a1 = await users.save()
+    await users.save()
     res.redirect('dashboard')
   }catch{
-    res.send('Error')
+    res.send('Error her')
   }
 })
 

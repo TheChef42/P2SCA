@@ -1,9 +1,9 @@
 extends layout
 
 block content
-
+    title='SCA - Create user'
     div(class = 'text-center center-div' id = 'login')
-        div(class = 'container w-25 border')
+        div(class = 'container w-25 border py-3')
             h1=title
             form(method='POST' action='')
                 div.form-group
@@ -15,8 +15,6 @@ block content
                     input(class='form-control' type='password' placeholder='Password' name='password' required='true' value=(undefined===user ? '' : user.password))
                     label Address:
                     input(class='form-control' type='text' placeholder='Placeholder 42' name='address' required='true' value=(undefined === user ? '' : user.address))
-                    //label(for='region') Region:
-                    //input#region.form-control(name='region' required='true' value=(undefined === user ? '' : user.region))
                     label(for='Region') Choose a region:
                     select#region(name='region')
                         option(value='Águas Claras') Águas Claras
