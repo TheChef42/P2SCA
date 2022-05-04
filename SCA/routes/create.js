@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET create form. */
 router.get('/', function(req, res, next) {
-    res.render('user_form', { title: 'Create user' });
+    res.render('createUser', { title: 'Create user' });
 });
 
 
@@ -21,11 +21,11 @@ router.post('/', async(req,res) =>{
     if(user==null){
     try{
         const a1 = await users.save()
-        res.render('index',{title:'Login',logout:'User created successfully!'})
+        res.render('login',{title:'Login',logout:'User created successfully!'})
     }catch (err){
         res.send('Error')
     }} else{
-        res.render('user_form', { title: 'Create user' , userexists: 'true', user: users });
+        res.render('createUser', { title: 'Create user' , userexists: 'true', user: users });
     }
 })
 module.exports = router;

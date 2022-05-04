@@ -17,10 +17,10 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer ({storage:storage})
+const pickupOrder = multer ({storage:storage})
 
 
-router.post('/', upload.single('uploadImage'), async (req, res)=>{
+router.post('/', pickupOrder.single('uploadImage'), async (req, res)=>{
     const users = await User.findOne({username:req.session.user})
     const pickupOrder = new PickupOrder ({
         username: users.username,
@@ -37,7 +37,7 @@ router.post('/', upload.single('uploadImage'), async (req, res)=>{
 
 router.get('/',(req,res)=>{
     if(req.session.user){
-        res.render('pickup',{user:req.session.user})
+        res.render('pickupOrder',{user:req.session.user})
     }else{
         res.send('Unauthorized User')
     }

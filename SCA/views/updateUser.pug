@@ -3,8 +3,9 @@ extends layout
 block content
 
     div(class = 'text-center center-div')
-        div(class = 'container w-25 border py-4' id='update')
+        div(class = 'container w-25 border py-3' id='update')
             h1=title
+            h2='Update user'
             form(method='POST' action='/update')
                 div.form-group
                     label Email:

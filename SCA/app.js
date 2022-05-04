@@ -18,7 +18,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var createRouter = require('./routes/create');
-var uploadRouter = require('./routes/upload');
 var pickupRouter = require('./routes/pickup')
 
 const bodyParser = require("body-parser");
@@ -57,7 +56,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login',loginRouter);
 app.use('/create',createRouter);
-app.use('/upload',uploadRouter);
 app.use('/pickup',pickupRouter)
 
 // catch 404 and forward to error handler

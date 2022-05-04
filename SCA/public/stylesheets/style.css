@@ -4,7 +4,12 @@
   padding-top: 10%;
 }
 
+.spacer{
+  margin-top: 5px;
+}
+
 .btn.btn-success{
+  margin-top: 5px;
   padding: .4em 2em;
   background-color: pink;
 }

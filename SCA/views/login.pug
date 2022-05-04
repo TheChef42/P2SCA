@@ -3,18 +3,21 @@ extends layout
 block content
 
   div(class = 'text-center center-div' id = 'login')
-    div(class = 'container w-25 border py-4')
-      div(class ='title pb-5')
-        h2(class ='font-weight-bold') Login system
+    div(class = 'container w-25 border py-3')
+      div(class ='title')
+        h2(class ='font-weight-bold') Welcome to SCA
             h3 Log in for the existing user
             if(locals.logout)
               div(class='alert alert-success text-center')
                 =logout
-      form(action='/login' method='POST' class='pt-3')
+      form(action='/login' method='POST')
         div(class = 'form-group')
+          small(class = 'form-text text-left text-black') Username/Email:
           input(type='email', class='form-control', placeholder= 'email', name='email', value=(undefined===user ? '' : user.username))
-          small(class = 'form-text text-left text-black') Register email address
         div(class = 'form-group')
+          small(class = 'form-text text-left text-black') Password:
           input(type='password', class='form-control', name='password', placeholder='password')
-        button(type='submit', class='btn btn-success rounded-pill') Submit
-      a(href='/create') Create user
+        button(type='submit', class='btn btn-success rounded-pill') Log in
+      spacer(class = 'pt-5')
+      small(class = 'form-text text-left text-black') Not registered?
+      a(href='/create') Create an account

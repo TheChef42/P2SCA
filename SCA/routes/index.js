@@ -7,12 +7,10 @@ var router = express.Router();
 express().set("view engine", "pug");
 
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Login system' });
+  res.render('login', { title: 'Login system' });
 });
 
-//route for dashboard
 router.get('/dashboard',async(req,res)=>{
   console.log(req.session.user)
   const users = await User.findOne({username:req.session.user})
@@ -25,19 +23,19 @@ router.get('/dashboard',async(req,res)=>{
   }
 })
 
-//route for logout
 router.get('/logout',(req,res)=>{
   req.session.destroy(function(err){
     if(err){
       consol.log(err);
       res.send('Error')
     }else{
-      res.render('index',{title:'Express',logout:'Logout Successfully!'})
+      res.render('login',{title:'Express',logout:'Logout Successfully!'})
     }
   })
 })
+
 router.get('/delete',(req,res)=>{
-  res.render('delete',{title:'Delete user',user:req.session.user})
+  res.render('deleteUser',{title:'Delete user',user:req.session.user})
 })
 
 router.post('/delete',async(req,res)=>{
@@ -50,50 +48,28 @@ router.post('/delete',async(req,res)=>{
         console.log(err);
         res.send('Error')
       } else {
-        res.render('index', {title: 'Login', logout: 'The user has been deleted!'})
+        res.render('login', {title: 'Login', logout: 'The user has been deleted!'})
       }
     })
   }catch(err){
     res.send('Error')
   }
 })
-/*
-router.post ('/pickUpOrder', async (req, res) => {
-  try{
-    const users = await User.findOne({username:req.session.user})
-    const pickupOrder = new PickupOrder ({
-      username: users.username,
-      date: req.body.date,
-      address: users.address,
-      region: users.region,
-      url:
-    })
-    const a1 = await pickupOrder.save()
-    res.redirect('dashboard')
 
-  } catch(err) {
-    res.send('Error')
-  }
-
-})
-
-
-router.get('/pickUpOrder',(req,res)=>{
-  res.render('dashboard')
-})
-*/
 router.get('/pickup',(req,res)=>{
   if(req.session.user){
-    res.render('pickup',{user:req.session.user})
+    res.render('pickupOrder',{user:req.session.user})
   }else{
     res.send('Unauthorized User')
   }
 })
+
 router.get('/update',async(req,res)=>{
   const users = await User.findOne({username:req.session.user})
-  res.render('update_form',{user: users})
+  res.render('updateUser',{user: users})
 })
 
+ //TODO fix update
 router.post('/update', async(req,res) =>{
   try{
     const users = await User.findOne({username:req.session.user})
@@ -111,8 +87,7 @@ router.post('/update', async(req,res) =>{
 
 router.get('/rating',(req,res)=>{
   res.render('ratingSystem', {user:req.session.user})
-    }
-)
+})
 
 router.post('/rating', async (req,res)=>{
   console.log(req.session.user)
@@ -132,12 +107,13 @@ router.post('/rating', async (req,res)=>{
 
 router.get('/pictures',async(req,res)=>{
   const pickup = await PickupOrder.find()
-  res.render('viewImage',{pickups: pickup, user:req.session.user})
+  res.render('viewImageForRating',{pickups: pickup, user:req.session.user})
 })
 
 router.get('/rating/:id', async(req,res)=>{
+  const pickup = await PickupOrder.find()
   try {
-    res.render('ratingSystem', {url: req.params.id});
+    res.render('ratingUser', {pickups: pickup, url: req.params.id});
   }catch (err) {
     res.send('Error')
   }
@@ -156,15 +132,11 @@ router.post('/rating/:id', async (req,res)=>{
   } catch{
     res.send('Æv var')
   }
+})
 
   router.get('/selectedOrder', async(req,res)=>{
-    res.render('index', { title: 'Login system' });
-    /*try {
-      res.render('test')
-    }catch (err) {
-      res.send('Error')
-    }*/
+    res.render('login', { title: 'Login system' });
   })
-})
+
 
 module.exports = router;

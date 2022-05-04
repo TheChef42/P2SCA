@@ -3,7 +3,7 @@ extends layout
 block content
 
     div(class='text-center center-div' id='login')
-        div(class='container w-25 border py-4')
+        div(class='container w-25 border')
             img(src='/images/logo_trans.png' class='w-50')
             h3 Welcome to the Dashboard
             h5 #{locals.user ? user.username:'User'}
@@ -14,7 +14,6 @@ block content
             a(href='/delete') Delete
             if(!locals.driver)
                 a(href='/pickup') Pick up order
-            //a(href='/rating') Rating system
             if(!locals.driver)
                 a(href='/pictures') Rate a picture
                 a(href='/pickup/userOrder') Selected pickups

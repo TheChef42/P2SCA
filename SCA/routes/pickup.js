@@ -3,64 +3,98 @@ const User = require("../models/user");
 const PickupOrder = require("../models/pickupOrder");
 const Rating = require("../models/rating");
 var router = express.Router();
+const multer = require('multer');
+const path = require("path");
+var imageUrl = ""
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) =>{
+        cb(null, './public/images');
+    },
+    filename: (req, file, cb) => {
+        imageUrl = Date.now() + path.extname(file.originalname)
+        cb(null, imageUrl)
+    }
+})
+
+const pickupOrder = multer ({storage:storage})
+
+
+router.post('/pickupOrder', pickupOrder.single('uploadImage'), async (req, res)=>{
+    const users = await User.findOne({username:req.session.user})
+    const pickupOrder = new PickupOrder ({
+        username: users.username,
+        date: req.body.date,
+        address: users.address,
+        region: users.region,
+        url: imageUrl,
+        driver: '',
+        status: 'requested'
+    })
+    const a1 = await pickupOrder.save()
+    res.render('dashboard',{user:users,driver:users.driver});
+})
+
+router.get('/pickupOrder',(req,res)=>{
+    if(req.session.user){
+        res.render('pickupOrder',{user:req.session.user})
+    }else{
+        res.send('Unauthorized User')
+    }
+})
 
 router.get('/list', async(req, res) => {
     try {
         const pickups = await PickupOrder.find({status:'requested'}).sort({date:'asc',region:'asc'})
-        console.log('test' + pickups)
-        res.render('test', {pickups: pickups});
+        console.log('pickupsList' + pickups)
+        res.render('pickupsList', {pickups: pickups});
     }catch(err){
         res.render('error');
-        //res.render('pickups');
     }
 });
 
-
 router.get('/selectedOrder', async(req,res)=>{
     res.render('index', { title: 'Login system' });
-    /*try {
-      res.render('test')
-    }catch (err) {
-      res.send('Error')
-    }*/
 })
 router.post('/list', async(req,res) =>{
     try{
         await PickupOrder.findByIdAndUpdate(req.body.id,{driver: req.session.user, status: 'accepted'})
         const pickups = await PickupOrder.find({status:'requested'}).sort({date:'asc',region:'asc'})
-        res.render('test', {pickups: pickups, confirmation: 'Pickup selected' });
+        res.render('pickupsList', {pickups: pickups, confirmation: 'Pickup selected' });
     }catch{
         res.send('Error')
     }
 })
+
 router.get('/myOrder', async(req, res) => {
     try {
         const pickups = await PickupOrder.find({driver:req.session.user}).sort({date:'asc',region:'asc'})
-        console.log('test' + pickups)
-        res.render('test', {pickups: pickups});
+        console.log('pickupsList' + pickups)
+        res.render('pickupsList', {pickups: pickups});
     }catch(err){
         res.render('error');
-        //res.render('pickups');
     }
 });
+
 router.post('/myOrder', async(req, res) => {
     try{
         await PickupOrder.findByIdAndUpdate(req.body.id,{ status: 'confirmed'})
         const pickups = await PickupOrder.find({driver:req.session.user}).sort({date:'asc',region:'asc'})
-        res.render('test', {pickups: pickups, confirmation: 'Pickup confirmed' });
+        res.render('pickupsList', {pickups: pickups, confirmation: 'Pickup confirmed' });
     }catch{
         res.send('Error')
     }
 });
+
 router.get('/userOrder', async(req, res) => {
     try {
         const pickups = await PickupOrder.find({username:req.session.user}).sort({date:'asc',region:'asc'})
         res.render('userPickups', {pickups: pickups});
     }catch(err){
         res.render('error');
-        //res.render('pickups');
     }
 });
+
 router.post('/userOrder', async(req, res) => {
     try{
         await PickupOrder.findByIdAndDelete(req.body.id)
@@ -74,12 +108,12 @@ router.post('/userOrder', async(req, res) => {
 router.post('/pickupRating',async(req,res)=>{
     try {
         const pickups = await PickupOrder.findById(req.body.id)
-        res.render('ratingSystem', {pickups: pickups,url: pickups.url});
+        res.render('ratingDriver', {pickups: pickups,url: pickups.url});
     }catch(err){
         res.render('error');
-        //res.render('pickups');
     }
 });
+
 router.post('/pickupRatingg',async(req,res)=>{
     try{
         const rating = new Rating ({
