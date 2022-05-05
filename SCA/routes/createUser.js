@@ -15,17 +15,17 @@ router.post('/', async(req,res) =>{
         driver: req.body.driver,
         address: req.body.address,
         region: req.body.region
-
     })
+    console.log(users)
     const user = await User.findOne({username:req.body.username})
-    if(user==null){
+    if(user){
+        res.render('createUser', { title: 'Create user' , userexists: 'true', user: users });}
+    else{
     try{
-        const a1 = await users.save()
+        await users.save()
         res.render('login',{title:'Login',logout:'User created successfully!'})
     }catch (err){
         res.send('Error')
-    }} else{
-        res.render('createUser', { title: 'Create user' , userexists: 'true', user: users });
-    }
+    }}
 })
 module.exports = router;

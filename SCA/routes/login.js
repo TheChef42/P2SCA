@@ -6,6 +6,8 @@ let isMatch = false
 
 router.post('/',async (req,res)=>{
     const users = await User.findOne({username:req.body.email})
+    if(!users)
+        res.render('login',{logout:'invalid username'})
     const rating = await Rating.find({username:req.body.email}).select('rating')
     average = rating.reduce((sum, { rating }) => sum + rating, 0) / rating.length
     User.findOne({username: req.body.email}, async function(err, User) {
@@ -18,7 +20,7 @@ router.post('/',async (req,res)=>{
                 res.redirect('/dashboard')
                 //res.render('dashboard',{user:users,driver:users.driver,average: average});
             }else{
-                res.render('index',{user:users,logout:'invalid password'})
+                res.render('login',{user:users,logout:'invalid password'})
             }
         });
     });

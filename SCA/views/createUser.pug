@@ -15,8 +15,8 @@ block content
                     input(class='form-control' type='password' placeholder='Password' name='password' required='true' value=(undefined===user ? '' : user.password))
                     label Address:
                     input(class='form-control' type='text' placeholder='Placeholder 42' name='address' required='true' value=(undefined === user ? '' : user.address))
-                    label(for='Region') Choose a region:
-                    select#region(name='region')
+                    label Choose a region:
+                    select(class='form-control' name='region')
                         option(value='Águas Claras') Águas Claras
                         option(value='Arniqueira') Arniqueira
                         option(value='Brazlândia') Brazlândia
