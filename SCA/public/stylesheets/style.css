@@ -1,11 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 .center-div{
-  padding-top: 10%;
-}
-
-.spacer{
-  margin-top: 5px;
+  padding-top: 5%;
 }
 
 .btn.btn-success{
@@ -33,6 +29,7 @@ form{
 .container{
   border-radius: 25px;
   background-color: rgba(220, 220, 220, 0.8);
+  margin-bottom: 35px;
 }
 
 a {
@@ -48,17 +45,42 @@ a:link, a:visited {
   border-radius: 15px;
   color: black;
   margin-top: 5px;
-  padding: 10px 20px;
+  padding-y: 10px;
   text-align: center;
   text-decoration: none;
   display: flex;
 }
+
 a:hover, a:active {
   background-color: pink;
 }
+
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  margin-top: 7px;
+  margin-left: 100px;
+  text-decoration: none;
+  font-size: 17px;
+  border-radius: 5px;
+}
+
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(220, 220, 220);
+  overflow: hidden;
+  text-align: center;
+  height: 75px;
+}
+
 table, th, td {
   border-bottom: 1px solid #ddd;
   text-align: left;
+  min-width: 125px;
 }
 tr:hover {background-color: coral;}
 

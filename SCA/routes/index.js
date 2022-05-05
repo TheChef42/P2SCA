@@ -8,7 +8,7 @@ express().set("view engine", "pug");
 
 
 router.get('/', function(req, res) {
-  res.redirect('login');
+  res.render('frontPage');
 });
 
 router.get('/dashboard',async(req,res)=>{
@@ -35,8 +35,13 @@ router.get('/logout',(req,res)=>{
 })
 
 router.get('/delete',(req,res)=>{
-  res.render('deleteUser',{title:'Delete user',user:req.session.user})
+  if(req.session.user){
+    res.render('deleteUser',{title:'Delete user',user:req.session.user})
+  }else{
+    res.send('Unauthorized User')
+  }
 })
+
 
 router.post('/delete',async(req,res)=>{
   try{
@@ -66,7 +71,11 @@ router.get('/pickup',(req,res)=>{
 
 router.get('/update',async(req,res)=>{
   const users = await User.findOne({username:req.session.user})
-  res.render('updateUser',{user: users})
+  if(req.session.user){
+    res.render('updateUser',{user: users})
+  }else{
+    res.send('Unauthorized User')
+  }
 })
 
  //TODO fix update
@@ -85,7 +94,11 @@ router.post('/update', async(req,res) =>{
 })
 
 router.get('/rating',(req,res)=>{
-  res.render('ratingSystem', {user:req.session.user})
+  if(req.session.user){
+    res.render('ratingSystem', {user:req.session.user})
+  }else{
+    res.send('Unauthorized User')
+  }
 })
 
 router.post('/rating', async (req,res)=>{
@@ -106,15 +119,23 @@ router.post('/rating', async (req,res)=>{
 
 router.get('/pictures',async(req,res)=>{
   const pickup = await PickupOrder.find()
-  res.render('viewImageForRating',{pickups: pickup, user:req.session.user})
+  if(req.session.user){
+    res.render('viewImageForRating',{pickups: pickup, user:req.session.user})
+  }else{
+    res.send('Unauthorized User')
+  }
 })
 
 router.get('/rating/:id', async(req,res)=>{
   const pickup = await PickupOrder.find()
-  try {
-    res.render('ratingUser', {pickups: pickup, url: req.params.id});
-  }catch (err) {
-    res.send('Error')
+  if(req.session.user){
+    try {
+      res.render('ratingUser', {pickups: pickup, url: req.params.id});
+    }catch (err) {
+      res.send('Error')
+    }
+  }else{
+    res.send('Unauthorized User')
   }
 })
 
@@ -132,10 +153,6 @@ router.post('/rating/:id', async (req,res)=>{
     res.send('Æv var')
   }
 })
-
-  router.get('/selectedOrder', async(req,res)=>{
-    res.render('login', { title: 'Login system' });
-  })
 
 
 module.exports = router;

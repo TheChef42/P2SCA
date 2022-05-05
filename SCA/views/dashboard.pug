@@ -2,11 +2,16 @@ extends layout
 
 block content
     title='SCA - Dashboard'
-    div(class='text-center center-div' id='login')
-        div(class='container w-25 border pt-3')
+    div(class='text-center center-div' id='dashboard')
+        div(class='container w-25 border py-3')
             img(src='/images/logo_trans.png' class='w-50')
             h3 Welcome #{locals.user ? user.username:'User'} to the Selective collection app
             h6 #{'Your average rating is ' + average.toFixed(2)}
-            p This is an app made by Anna, Carla, Christoffer and Daniel from Aalborg university copenhagen.
-            p The app shows how you could implement a selective collection app for the city of brasilia
-            h5 Use the menu to the left to navigate.
+            if(!locals.driver)
+                a(href='/pickup') Pick up order
+            if(!locals.driver)
+                a(href='/pictures') Rate a public picture
+                a(href='/pickup/userOrder') Your pick up orders
+            if(locals.driver)
+                a(href='/pickup/list') Pick up List
+                a(href='/pickup/myOrder') Your personal pick up lists

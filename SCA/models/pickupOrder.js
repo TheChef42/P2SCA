@@ -7,7 +7,7 @@ const pickupOrderSchema = new mongoose.Schema({
         required: false
     },
     date: {
-        type: Date,
+        type: String,
         required: false
     },
     address: {

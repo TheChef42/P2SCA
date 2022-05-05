@@ -5,22 +5,10 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
 
 body
-  div(class='container-fluid')
+  div(class='topnav')
     div(class='row')
-      div(class='col-sm-2 sidebar-nav')
-        block sidebar
-          ul(class='sidebar-nav container py-3 px-2')
-            if(!locals.driver)
-              a(href='/pickup') Pick up order
-            if(!locals.driver)
-              a(href='/pictures') Rate a public picture
-              a(href='/pickup/userOrder') Your pick up orders
-            if(locals.driver)
-              a(href='/pickup/list') Pick up List
-              a(href='/pickup/myOrder') Your personal pick up lists
-            a(href='/dashboard') Return to dashboard
-            a(href='/logout') Log out
-            a(href='/delete') Delete
+        a(href='/dashboard' class='w-25') Return to dashboard
+        a(href='/delete' class='w-25') Delete account
+        a(href='/logout' class='w-25') Log out
 
-      div(class='col-sm-10')
-        block content
+  block content

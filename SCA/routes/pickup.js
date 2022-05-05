@@ -44,18 +44,27 @@ router.get('/pickupOrder',(req,res)=>{
 })
 
 router.get('/list', async(req, res) => {
-    try {
-        const pickups = await PickupOrder.find({status:'requested'}).sort({date:'asc',region:'asc'})
-        console.log('pickupsList' + pickups)
-        res.render('pickupsList', {pickups: pickups});
-    }catch(err){
-        res.render('error');
+    if(req.session.user){
+        try {
+            const pickups = await PickupOrder.find({status:'requested'}).sort({date:'asc',region:'asc'})
+            console.log('pickupsList' + pickups)
+            res.render('pickupsList', {pickups: pickups});
+        }catch (err) {
+            res.render('error')
+        }
+    }else{
+        res.send('Unauthorized User')
     }
 });
 
 router.get('/selectedOrder', async(req,res)=>{
-    res.render('index', { title: 'Login system' });
+    if(req.session.user){
+        res.render('index', { title: 'Login system' });
+    }else{
+        res.send('Unauthorized User')
+    }
 })
+
 router.post('/list', async(req,res) =>{
     try{
         await PickupOrder.findByIdAndUpdate(req.body.id,{driver: req.session.user, status: 'accepted'})
@@ -67,12 +76,16 @@ router.post('/list', async(req,res) =>{
 })
 
 router.get('/myOrder', async(req, res) => {
-    try {
-        const pickups = await PickupOrder.find({driver:req.session.user}).sort({date:'asc',region:'asc'})
-        console.log('pickupsList' + pickups)
-        res.render('pickupsList', {pickups: pickups});
-    }catch(err){
-        res.render('error');
+    if(req.session.user){
+        try {
+            const pickups = await PickupOrder.find({driver:req.session.user}).sort({date:'asc',region:'asc'})
+            console.log('pickupsList' + pickups)
+            res.render('pickupsList', {pickups: pickups});
+        }catch(err){
+            res.render('error');
+        }
+    }else{
+        res.send('Unauthorized User')
     }
 });
 
@@ -87,11 +100,15 @@ router.post('/myOrder', async(req, res) => {
 });
 
 router.get('/userOrder', async(req, res) => {
-    try {
-        const pickups = await PickupOrder.find({username:req.session.user}).sort({date:'asc',region:'asc'})
-        res.render('userPickups', {pickups: pickups});
-    }catch(err){
-        res.render('error');
+    if(req.session.user){
+        try {
+            const pickups = await PickupOrder.find({username:req.session.user}).sort({date:'asc',region:'asc'})
+            res.render('userPickups', {pickups: pickups});
+        }catch(err){
+            res.render('error');
+        }
+    }else{
+        res.send('Unauthorized User')
     }
 });
 
