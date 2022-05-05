@@ -16,8 +16,8 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #68c97f;
-  background-image: url("https://images6.alphacoders.com/568/thumb-1920-568500.jpg");
+  background-color: lightskyblue;
+  background-image: url("../images/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -61,4 +61,10 @@ table, th, td {
   text-align: left;
 }
 tr:hover {background-color: coral;}
+
+.sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
 
