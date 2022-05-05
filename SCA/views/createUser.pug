@@ -8,15 +8,16 @@ block content
             form(method='POST' action='')
                 div.form-group
                     label Email:
-                    input(class='form-control' type='email' placeholder='place@holder.com' name='username' required='true' value=(undefined===user ? '' : user.username) )
+                    input(class='form-control' type='email' placeholder='place@holder.com' name='username' required='true' value=(username) )
                     if (userexists === 'true')
                         p Email is already in use
                     label Password:
-                    input(class='form-control' type='password' placeholder='Password' name='password' required='true' value=(undefined===user ? '' : user.password))
+                    input(class='form-control' type='password' placeholder='Password' name='password' required='true' value=(password))
                     label Address:
-                    input(class='form-control' type='text' placeholder='Placeholder 42' name='address' required='true' value=(undefined === user ? '' : user.address))
+                    input(class='form-control' type='text' placeholder='Placeholder 42' name='address' required='true' value=(address))
                     label Choose a region:
-                    select(class='form-control' name='region')
+                    select(class='form-control' name='region' required='true')
+                        option(value='') Choose one
                         option(value='Águas Claras') Águas Claras
                         option(value='Arniqueira') Arniqueira
                         option(value='Brazlândia') Brazlândia
@@ -52,9 +53,9 @@ block content
                         option(value='Vicente Pires') Vicente Pires
                     p What are you?
                     label Consumer
-                    input(class='form-control-input' type='radio' name='driver' checked='true' required='true' value=(undefined === user ? 'false' : user.driver))
+                    input(class='form-control-input' type='radio' name='driver' required='true' value='false')
                     label Driver
-                    input(class='form-control-input' type='radio' name='driver' value=(undefined === user ? 'true' : user.driver))
+                    input(class='form-control-input' type='radio' name='driver' required='true' value='false')
 
                 button.btn.btn-primary(type='submit') Submit
 

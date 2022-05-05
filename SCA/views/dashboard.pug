@@ -15,10 +15,9 @@ block content
             if(!locals.driver)
                 a(href='/pickup') Pick up order
             if(!locals.driver)
-                a(href='/pictures') Rate a picture
-                a(href='/pickup/userOrder') Selected pickups
+                a(href='/pictures') Rate a public picture
+                a(href='/pickup/userOrder') Your pick up orders
             if(locals.driver)
                 a(href='/pickup/list') Pick up List
-                a(href='/pickup/myOrder') Selected pickups
-            //a(href='/update') Update
+                a(href='/pickup/myOrder') Your personal pick up lists
             img(src='')

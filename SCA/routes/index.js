@@ -7,8 +7,8 @@ var router = express.Router();
 express().set("view engine", "pug");
 
 
-router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Login system' });
+router.get('/', function(req, res) {
+  res.redirect('login');
 });
 
 router.get('/dashboard',async(req,res)=>{

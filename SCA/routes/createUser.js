@@ -19,7 +19,8 @@ router.post('/', async(req,res) =>{
     console.log(users)
     const user = await User.findOne({username:req.body.username})
     if(user){
-        res.render('createUser', { title: 'Create user' , userexists: 'true', user: users });}
+        res.render('createUser', { title: 'Create user' , userexists: 'true',
+            username: req.body.username, password: req.body.password, address: req.body.address});}
     else{
     try{
         await users.save()

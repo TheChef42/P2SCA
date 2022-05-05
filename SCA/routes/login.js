@@ -4,6 +4,10 @@ const Rating = require('../models/rating')
 var router = express.Router();
 let isMatch = false
 
+router.get('/', function(req, res) {
+    res.render('login');
+});
+
 router.post('/',async (req,res)=>{
     const users = await User.findOne({username:req.body.email})
     if(!users)
