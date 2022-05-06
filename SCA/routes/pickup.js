@@ -80,7 +80,7 @@ router.get('/myOrder', async(req, res) => {
         try {
             const pickups = await PickupOrder.find({driver:req.session.user}).sort({date:'asc',region:'asc'})
             console.log('pickupsList' + pickups)
-            res.render('pickupsList', {pickups: pickups});
+            res.render('pickupsList', {pickups: pickups, driver: 'true'});
         }catch(err){
             res.render('error');
         }
