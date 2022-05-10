@@ -15,9 +15,12 @@ router.get('/dashboard',async(req,res)=>{
   console.log(req.session.user)
   const users = await User.findOne({username:req.session.user})
   const rating = await Rating.find({username:req.session.user}).select('rating')
+  const ratings = await Rating.find({username:req.session.user}).sort({'_id': -1}).limit(3)
+  const pickups = await PickupOrder.find({username:req.session.user})
+  console.log(pickups.length)
   average = rating.reduce((sum, { rating }) => sum + rating, 0) / rating.length
   if(req.session.user){
-    res.render('dashboard',{user:users,driver:users.driver,average: average})
+    res.render('dashboard',{user:users,driver:users.driver,average:average,ratings:ratings, pickupamount: pickups.length})
   }else{
     res.send('Unauthorized User')
   }
@@ -78,7 +81,7 @@ router.get('/update',async(req,res)=>{
   }
 })
 
- //TODO fix update
+//TODO fix update
 router.post('/update', async(req,res) =>{
   try{
     const users = await User.updateOne({username:req.session.user})
@@ -153,6 +156,20 @@ router.post('/rating/:id', async (req,res)=>{
     res.send('Æv var')
   }
 })
+
+router.get('/ratingsList', async(req, res) => {
+  if(req.session.user){
+    try {
+      const ratings = await Rating.find({username:req.session.user})
+      console.log('ratingsList' + ratings)
+      res.render('ratingsList', {ratings: ratings});
+    }catch (err) {
+      res.render('error')
+    }
+  }else{
+    res.send('Unauthorized User')
+  }
+});
 
 
 module.exports = router;
