@@ -10,6 +10,8 @@ router.get('/', function(req, res) {
 
 router.post('/',async (req,res)=>{
     const users = await User.findOne({username:req.body.email})
+    const rating = await Rating.find({username:req.body.email}).select('rating')
+    average = rating.reduce((sum, { rating }) => sum + rating, 0) / rating.length
     if(!users){
         res.render('login',{logout:'invalid username'})
     }else{

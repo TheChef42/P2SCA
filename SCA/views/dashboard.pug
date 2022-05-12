@@ -15,4 +15,18 @@ block content
             if(locals.driver)
                 a(href='/pickup/list') Pick up List
                 a(href='/pickup/myOrder') Your personal pick up lists
-
+                a(href='/pickup/today') Todays pick up list
+                    a(href='/ratingsList') Rating details
+                    h5 Number of pickups
+                    =pickupamount + ' out of 100'
+                    div(class='progress')
+                        div(class='progress-bar progress-bar-striped progress-bar-animated' style=('width:' + pickupamount + '%') role='progressbar' aria-valuenow="0" aria-valuemin="0" aria-valuemax="100")
+                            =pickupamount
+                    h5 Your latest ratings
+                        table(style='width:70%' class='center')
+                            th Rating
+                            th Comment
+                            for rating in ratings
+                                tr
+                                    td= rating.rating
+                                    td= rating.comment
