@@ -6,7 +6,13 @@ var router = express.Router();
 const multer = require('multer');
 const path = require("path");
 var imageUrl = ""
-
+var today = new Date();
+var date ='';
+if((today.getMonth()+1)<10){
+    date = today.getFullYear()+'-0'+(today.getMonth()+1)+'-'+today.getDate()
+}else{
+    date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+}
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
         cb(null, './public/images');
@@ -145,5 +151,28 @@ router.post('/pickupRatingg',async(req,res)=>{
         res.send('Æv var')
     }
 });
+
+router.get('/today', async(req, res) => {
+    if(req.session.user){
+        try {
+            const pickups = await PickupOrder.find({status:{$ne:'requested'}, date: date, driver: req.session.user}).sort({region:'asc'})
+            res.render('pickupsList', {pickups: pickups});
+        }catch (err) {
+            res.render('error')
+        }
+    }else{
+        res.send('Unauthorized User')
+    }
+});
+
+router.post('/today', async(req,res) =>{
+    try{
+        await PickupOrder.findByIdAndUpdate(req.body.id,{driver: req.session.user, status: 'confirmed'})
+        const pickups = await PickupOrder.find({status:{$ne:'requested'},date: date, driver: req.session.user}).sort({region:'asc'})
+        res.render('pickupsList', {pickups: pickups, confirmation: 'Pickup selected' });
+    }catch{
+        res.send('Error')
+    }
+})
 
 module.exports = router;
