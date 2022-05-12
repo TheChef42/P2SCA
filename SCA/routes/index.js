@@ -12,7 +12,6 @@ router.get('/', function(req, res) {
 });
 
 router.get('/dashboard',async(req,res)=>{
-  console.log(req.session.user)
   const users = await User.findOne({username:req.session.user})
   const rating = await Rating.find({username:req.session.user}).select('rating')
   average = rating.reduce((sum, { rating }) => sum + rating, 0) / rating.length
@@ -80,17 +79,19 @@ router.get('/update',async(req,res)=>{
 
  //TODO fix update
 router.post('/update', async(req,res) =>{
-  try{
-    const users = await User.updateOne({username:req.session.user})
-    users.username = req.body.username
-    users.address = req.body.address
-    users.region = req.body.region
-    users.driver = req.body.driver
-    await users.save()
-    res.redirect('dashboard')
+  const users = await User.findOne({username:req.session.user})
+  users.username = req.body.username
+  users.password = req.body.password
+  users.address = req.body.address
+  users.region = req.body.region
+  //users.driver = req.body.driver
+  await users.save()
+  res.redirect('dashboard')
+  /*try{
+
   }catch{
     res.send('Error her')
-  }
+  }*/
 })
 
 router.get('/rating',(req,res)=>{

@@ -31,7 +31,8 @@ router.post('/pickupOrder', pickupOrder.single('uploadImage'), async (req, res)=
         driver: '',
         status: 'requested'
     })
-    const a1 = await pickupOrder.save()
+
+    await pickupOrder.save()
     res.render('dashboard',{user:users,driver:users.driver});
 })
 
