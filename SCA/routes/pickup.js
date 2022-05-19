@@ -40,7 +40,7 @@ router.post('/pickupOrder', pickupOrder.single('uploadImage'), async (req, res)=
     })
 
     await pickupOrder.save()
-    res.render('dashboard',{user:users,driver:users.driver});
+    res.redirect('/dashboard');
 })
 
 router.get('/pickupOrder',(req,res)=>{
